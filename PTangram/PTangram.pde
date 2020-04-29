@@ -1,3 +1,4 @@
+boolean drawGrid = true;
 boolean win = false;
 PFont f;
 
@@ -36,6 +37,20 @@ int posxp = 113;
 int posyp = 263;
 float anglep = 0;
 
+void drawGrid(float scale) {
+  push();
+  strokeWeight(1);
+  int i;
+  for (i=0; i<=width/scale; i++) {
+    stroke(0, 0, 0, 20);
+    line(i*scale, 0, i*scale, height);
+  }
+  for (i=0; i<=height/scale; i++) {
+    stroke(0, 0, 0, 20);
+    line(0, i*scale, width, i*scale);
+  }
+  pop();
+}
 
 //Dibujar cuadrado
 void dibRect() {
@@ -54,6 +69,7 @@ void dibRect() {
     posxs=mouseX;
     posys=mouseY;
     background(112, 82, 252);
+    Malla();
     push();
     noStroke();
     fill(255);
@@ -95,6 +111,7 @@ void dibt1() {
     posxt1=mouseX;
     posyt1=mouseY;
     background(112, 82, 252);
+    Malla();
     noStroke();
     fill(255);
     triangle(450,700, 750,700, 600,550);
@@ -133,6 +150,7 @@ void dibt2() {
     posxt2=mouseX;
     posyt2=mouseY;
     background(112, 82, 252);
+    Malla();
     noStroke();
     fill(255);
     triangle(450,700, 750,700, 600,550);
@@ -168,8 +186,8 @@ void dibt3() {
   if ((dist(posxt3, posyt3, mouseX, mouseY)<30)&&(mousePressed)) {
     posxt3=mouseX;
     posyt3=mouseY;
-    
     background(112, 82, 252);
+    Malla();
     noStroke();
     fill(255);
     triangle(450,700, 750,700, 600,550);
@@ -212,6 +230,7 @@ void dibt4() {
     posxt4=mouseX;
     posyt4=mouseY;
     background(112, 82, 252);
+    Malla();
     noStroke();
     fill(255);
     triangle(450,700, 750,700, 600,550);
@@ -256,6 +275,7 @@ void dibt5() {
     posxt5=mouseX;
     posyt5=mouseY;
     background(112, 82, 252);
+    Malla();
     noStroke();
     fill(255);
     triangle(450,700, 750,700, 600,550);
@@ -306,6 +326,7 @@ void dibpar() {
     posxp=mouseX;
     posyp=mouseY;
     background(112, 82, 252);
+    Malla();
     noStroke();
     fill(255);
     triangle(450,700, 750,700, 600,550);
@@ -381,6 +402,17 @@ void cuadro(){
   }  
 }
 
+void keyPressed() {
+  if (key == 'g' || key == 'G')
+    drawGrid = !drawGrid;
+}
+
+void Malla() {
+  if (drawGrid)
+    drawGrid(10);
+    
+} 
+
 void setup() {
   size(800, 700);
   f = loadFont("ComicSansMS-Italic-48.vlw");
@@ -389,6 +421,7 @@ void setup() {
 
 void draw() {
   background(112, 82, 252);
+  Malla();
   noStroke();
   fill(255);
   triangle(450,700, 750,700, 600,550);
